@@ -3,6 +3,7 @@ import Container from "../components/Container";
 import Product from "../components/Product";
 import { connect } from "react-redux";
 import NavigationBar from "../components/NavigationBar";
+import NotificationBar from "../components/NotificationBar";
 
 class ProductContainer extends Component {
   render() {
@@ -28,6 +29,7 @@ class ProductContainer extends Component {
             })}
           </section>
         </Container>
+        <NotificationBar />
       </>
     );
   }

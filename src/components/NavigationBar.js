@@ -119,6 +119,7 @@ class NavigationBar extends Component {
                         onClick={(event) => {
                           event.preventDefault();
                           this.handleCurrencyChange(label, label);
+                          this.handleDropDownLeave;
                         }}
                       >
                         {symbol} {label}

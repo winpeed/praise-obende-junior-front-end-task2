@@ -112,7 +112,7 @@ class ProductItem extends Component {
               disabled={!inStock}
               onClick={() => this.handleAddToCart(id)}
             >
-              add to cart
+              {inStock ? "add to cart" : "out of stock"}
             </button>
 
             <p className="product--desc">
