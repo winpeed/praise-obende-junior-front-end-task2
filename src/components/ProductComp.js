@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import Product from "../components/product/";
 
-export class Product extends Component {
+class ProductComp extends Component {
   state = {
     cartToggle: false,
   };
@@ -27,21 +28,14 @@ export class Product extends Component {
     const { currency } = this.props;
 
     return (
-      <div className="product--page--item">
+      <Product.Item>
         <Link
           to={`/products/${category}/${id}`}
           onMouseEnter={this.handleCartToggle}
-          className="link--wrapper"
         >
-          <img
-            src={`${gallery[0]}`}
-            alt={name}
-            style={{ width: "100%", height: "auto", objectFit: "cover" }}
-          />
-
-          <h2 className="product--stock">{inStock ? null : "OUT OF STOCK"}</h2>
-          <h3 className="product--page--name">{name}</h3>
-
+          <Product.Picture src={`${gallery[0]}`} alt={name} />
+          <Product.Stock>{inStock ? null : "OUT OF STOCK"}</Product.Stock>
+          <Product.Name>{name}</Product.Name>
           {prices
             .filter((price) => price.currency.label === currency)
             .map((price) => {
@@ -50,22 +44,19 @@ export class Product extends Component {
                 currency: { symbol },
               } = price;
               return (
-                <p className="product--page--price" key={symbol}>
+                <Product.Price key={symbol}>
                   <span>{symbol}</span>
                   {amount}
-                </p>
+                </Product.Price>
               );
             })}
         </Link>
         {inStock && this.state.cartToggle ? (
-          <h2
-            className="product--cart--icon"
-            onClick={() => this.handleAddToCart(id)}
-          >
+          <Product.CartIcon onClick={() => this.handleAddToCart(id)}>
             <AiOutlineShoppingCart />
-          </h2>
+          </Product.CartIcon>
         ) : null}
-      </div>
+      </Product.Item>
     );
   }
 }
@@ -87,4 +78,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Product);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductComp);

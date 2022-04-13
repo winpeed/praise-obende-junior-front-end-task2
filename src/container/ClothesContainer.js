@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Container from "../components/Container";
-import NavigationBar from "../components/NavigationBar";
-import Product from "../components/Product";
+import Product from "../components/product/index";
+import ProductComp from "../components/ProductComp";
+import NavigationContainer from "./NavigationContainer";
 
 class ClothesContainer extends Component {
   render() {
@@ -10,24 +10,25 @@ class ClothesContainer extends Component {
     const { currency } = this.props.currencyData;
     return (
       <>
-        <NavigationBar />
-        <Container>
-          <h1 className="page--title">
+        <NavigationContainer />
+        <Product>
+          <Product.PageTitle>
             {name.slice(0, 1).toUpperCase()}
             {name.slice(1)}
-          </h1>
-          <section className="product--container">
+          </Product.PageTitle>
+
+          <Product.Container>
             {products.map((product) => {
               return (
-                <Product
+                <ProductComp
                   key={product.id}
                   product={product}
                   currency={currency}
                 />
               );
             })}
-          </section>
-        </Container>
+          </Product.Container>
+        </Product>
       </>
     );
   }

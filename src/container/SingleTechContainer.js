@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import NavigationBar from "../components/NavigationBar";
 import ProductItem from "../components/ProductItem";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
+import NavigationContainer from "./NavigationContainer";
 
 class SingleTechContainer extends Component {
   render() {
@@ -10,7 +10,7 @@ class SingleTechContainer extends Component {
 
     return (
       <>
-        <NavigationBar />
+        <NavigationContainer />
         <ProductItem product={product} />
       </>
     );

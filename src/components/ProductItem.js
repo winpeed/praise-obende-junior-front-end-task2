@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Container from "./Container";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
+import Product from "./product";
 
 class ProductItem extends Component {
   state = {
@@ -22,15 +23,14 @@ class ProductItem extends Component {
       product;
 
     const { currency } = this.props.currencyData;
-    console.log(this.props);
 
     return (
       <Container>
-        <section className="product--main">
-          <section className="product--swatch">
+        <Product.Main>
+          <Product.Swatch>
             {gallery.map((pic, index) => {
               return (
-                <img
+                <Product.Picture
                   key={pic}
                   src={`${pic}`}
                   alt={pic}
@@ -47,10 +47,10 @@ class ProductItem extends Component {
                 />
               );
             })}
-          </section>
+          </Product.Swatch>
 
-          <section className="product--img">
-            <img
+          <Product.ImageWrapper>
+            <Product.Picture
               src={`${gallery[this.state.numero]}`}
               alt={gallery[this.state.numero]}
               style={{
@@ -58,23 +58,21 @@ class ProductItem extends Component {
                 objectFit: "cover",
               }}
             />
-          </section>
+          </Product.ImageWrapper>
 
-          <section className="product--details">
-            <h2 className="product--name">{name}</h2>
-
+          <Product.DetailsWrapper>
+            <Product.NameHeading>{name}</Product.NameHeading>
             {attributes.length !== 0 ? (
-              <h4 className="product--head">
-                {" "}
+              <Product.HeadTitle>
                 {attributes[0].type === "swatch" ? "SWATCHES:" : "SIZES:"}
-              </h4>
+              </Product.HeadTitle>
             ) : null}
 
-            <div className="product--size">
+            <Product.Size>
               {attributes.length !== 0
                 ? attributes[0].items.map((item) => {
                     return (
-                      <span
+                      <Product.Span
                         key={item.id}
                         style={{
                           background:
@@ -84,13 +82,13 @@ class ProductItem extends Component {
                         }}
                       >
                         {attributes[0].type === "text" ? item.value : null}
-                      </span>
+                      </Product.Span>
                     );
                   })
                 : null}
-            </div>
+            </Product.Size>
 
-            <h4 className="product--head">PRICE:</h4>
+            <Product.HeadTitle>PRICE:</Product.HeadTitle>
 
             {prices
               .filter((price) => price.currency.label === currency)
@@ -100,26 +98,26 @@ class ProductItem extends Component {
                   currency: { label, symbol },
                 } = price;
                 return (
-                  <h5 className="product--price" key={label}>
-                    <span>{symbol}</span>
+                  <Product.Price key={label}>
+                    {" "}
+                    <Product.Span>{symbol}</Product.Span>
                     {amount}
-                  </h5>
+                  </Product.Price>
                 );
               })}
 
-            <button
-              className="product--btn"
+            <Product.Button
               disabled={!inStock}
               onClick={() => this.handleAddToCart(id)}
             >
               {inStock ? "add to cart" : "out of stock"}
-            </button>
+            </Product.Button>
 
-            <p className="product--desc">
+            <Product.Description>
               {description.replace(/<[^>]+>/g, "")}
-            </p>
-          </section>
-        </section>
+            </Product.Description>
+          </Product.DetailsWrapper>
+        </Product.Main>
       </Container>
     );
   }

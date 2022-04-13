@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import Container from "../components/Container";
-import Product from "../components/Product";
+import ProductComp from "../components/ProductComp";
 import { connect } from "react-redux";
-import NavigationBar from "../components/NavigationBar";
-import NotificationBar from "../components/NotificationBar";
+import Product from "../components/product/index";
+import NavigationContainer from "./NavigationContainer";
 
 class ProductContainer extends Component {
   render() {
@@ -11,25 +10,24 @@ class ProductContainer extends Component {
     const { name, products } = this.props.data[0];
     return (
       <>
-        <NavigationBar />
-        <Container>
-          <h1 className="page--title">
+        <NavigationContainer />
+        <Product>
+          <Product.PageTitle>
             {name.slice(0, 1).toUpperCase()}
             {name.slice(1)}
-          </h1>
-          <section className="product--container">
+          </Product.PageTitle>
+          <Product.Container>
             {products.map((product) => {
               return (
-                <Product
+                <ProductComp
                   key={product.id}
                   product={product}
                   currency={currency}
                 />
               );
             })}
-          </section>
-        </Container>
-        <NotificationBar />
+          </Product.Container>
+        </Product>
       </>
     );
   }

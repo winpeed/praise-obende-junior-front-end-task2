@@ -6,8 +6,9 @@ import { NavLink, Link } from "react-router-dom";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import CartOverlay from "../components/CartOverlay";
 import { connect } from "react-redux";
+import Header from "../components/header/index";
 
-class NavigationBar extends Component {
+class NavigationContainer extends Component {
   state = {
     onDropDownToggle: false,
     onCartOverlayToggle: false,
@@ -26,7 +27,7 @@ class NavigationBar extends Component {
     this.setState((prevState) => {
       return {
         ...prevState,
-        onDropDownToggle: false,
+        onDropDownToggle: !prevState.onDropDownToggle,
       };
     });
   };
@@ -60,52 +61,47 @@ class NavigationBar extends Component {
     const { prices } = products[0];
 
     const { symbol } = this.props.currencyData;
-    const { cartItems } = this.props.cartData;
+    const { cartItems, overlayItems } = this.props.cartData;
 
     return (
-      <header>
-        <nav className="nav">
-          <ul className="nav--left">
+      <Header>
+        <Header.Nav>
+          <Header.UnorderedLeft>
             {categories.map((category) => {
               const { name } = category;
               return (
-                <li key={name}>
+                <Header.ListItem key={name}>
                   <NavLink to={`/products/${name}`}>{name}</NavLink>
-                </li>
+                </Header.ListItem>
               );
             })}
-          </ul>
+          </Header.UnorderedLeft>
 
-          <ul className="nav--center">
-            <li>
-              <Link to="/cart">
-                <RiShoppingBag2Fill
-                  style={{
-                    fill: "#52d67a",
-                    fontSize: "1.6rem",
-                    cursor: "pointer",
-                  }}
-                />
-              </Link>
-            </li>
-          </ul>
+          <Header.UnorderedCenter>
+            <Header.ListItem>
+              <RiShoppingBag2Fill
+                style={{
+                  fill: "#52d67a",
+                  fontSize: "1.6rem",
+                  cursor: "pointer",
+                }}
+              />
+            </Header.ListItem>
+          </Header.UnorderedCenter>
 
-          <ul className="nav--right">
-            <li>
-              <div
-                className="nav--arrow--wrapper"
-                onClick={this.handleDropDownHover}
-              >
-                <span className="nav--currency">{symbol}</span>
-                {this.state.onDropDownToggle ? (
+          <Header.UnorderedRight>
+            <Header.ListItem>
+              <Header.Wrapper onClick={this.handleDropDownHover}>
+                <Header.Span>{symbol}</Header.Span>
+                {this.handleDropDownHover ? (
                   <IoIosArrowDown />
                 ) : (
                   <IoIosArrowUp />
                 )}{" "}
-              </div>
+              </Header.Wrapper>
+
               {this.state.onDropDownToggle ? (
-                <div
-                  className="nav--currency--dropdown"
+                <Header.CurrencyDropdown
                   onMouseLeave={this.handleDropDownLeave}
                 >
                   {prices.map((price) => {
@@ -126,11 +122,11 @@ class NavigationBar extends Component {
                       </Link>
                     );
                   })}
-                </div>
+                </Header.CurrencyDropdown>
               ) : null}
-            </li>
+            </Header.ListItem>
 
-            <li className="cart--basket">
+            <Header.ListItem className="cart--basket">
               <Link
                 to="/"
                 onClick={this.handleCartOverlayHover}
@@ -140,14 +136,16 @@ class NavigationBar extends Component {
               >
                 <BsCart style={{ fontSize: "1.4rem", cursor: "pointer" }} />
               </Link>
-              <span className="cart--basket--number">{cartItems.length}</span>
+              <Header.Span className="cart--basket--number">
+                {overlayItems.length}
+              </Header.Span>
               {this.state.onCartOverlayToggle ? (
                 <CartOverlay onLeave={this.handleCartOverlayLeave} />
               ) : null}
-            </li>
-          </ul>
-        </nav>
-      </header>
+            </Header.ListItem>
+          </Header.UnorderedRight>
+        </Header.Nav>
+      </Header>
     );
   }
 }
@@ -167,4 +165,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavigationContainer);

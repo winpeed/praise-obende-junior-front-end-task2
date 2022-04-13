@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import Overlay from "./overlay";
 
 export class CartOverlay extends Component {
   handleIncrease = (cartValue) => {
@@ -21,19 +22,37 @@ export class CartOverlay extends Component {
       currency: { symbol },
     } = currencySymbol[0];
 
+    console.log(currency);
+    console.log(overlayItems);
+    const totalArray = overlayItems.map((item) => {
+      const priceItem = item.value.prices.filter((currValue) => {
+        return currValue.currency.label === currency;
+      });
+
+      const newItem = item.frequency * priceItem[0].amount;
+      return newItem;
+    });
+    const totalValue =
+      totalArray.length === 0
+        ? 0
+        : totalArray.reduce((acc, value) => {
+            return acc + value;
+          });
+    console.log(totalValue);
+    console.log(totalArray);
     return (
-      <section className="overlay" onMouseLeave={this.props.onLeave}>
-        <h4 className="overlay--info">
+      <Overlay onMouseLeave={this.props.onLeave}>
+        <Overlay.Info>
           My Bag, <span>{overlayItems.length}</span> item(s)
-        </h4>
+        </Overlay.Info>
         {overlayItems.length !== 0 ? (
           overlayItems.map((item) => {
             const { frequency, value } = item;
             const { id, name, prices, gallery, attributes } = value;
             return (
-              <section className="overlay--product--item" key={id}>
-                <div className="overlay--product--details">
-                  <h5 className="overlay--product--name">{name}</h5>
+              <Overlay.ProductItem key={id}>
+                <Overlay.ProductWrapper min="true">
+                  <Overlay.ProductName>{name}</Overlay.ProductName>
                   {prices.length !== 0 ? (
                     prices
                       .filter((price) => price.currency.label === currency)
@@ -43,22 +62,20 @@ export class CartOverlay extends Component {
                           currency: { symbol },
                         } = price;
                         return (
-                          <p className="overlay--product--price" key={price}>
-                            {" "}
-                            <span>{symbol}</span>
+                          <Overlay.ProductPrice key={price}>
+                            <Overlay.Span>{symbol}</Overlay.Span>
                             {(amount * frequency).toFixed(2)}
-                          </p>
+                          </Overlay.ProductPrice>
                         );
                       })
                   ) : (
                     <p>No results yet</p>
                   )}
-
-                  <p className="overlay--product--size">
+                  <Overlay.ProductSize>
                     {attributes.length !== 0
                       ? attributes[0].items.map((item) => {
                           return (
-                            <span
+                            <Overlay.Span
                               key={item.id}
                               style={{
                                 background:
@@ -70,19 +87,25 @@ export class CartOverlay extends Component {
                               {attributes[0].type === "text"
                                 ? item.value
                                 : null}
-                            </span>
+                            </Overlay.Span>
                           );
                         })
                       : null}
-                  </p>
-                </div>
-                <div className="cart--controls">
-                  <span onClick={() => this.handleIncrease(id)}>+</span>
-                  <p>{frequency}</p>
-                  <span onClick={() => this.handleDecrease(id)}>-</span>
-                </div>
-                <div>
-                  <img
+                  </Overlay.ProductSize>
+                </Overlay.ProductWrapper>
+
+                <Overlay.ProductWrapper>
+                  <Overlay.Span onClick={() => this.handleIncrease(id)}>
+                    +
+                  </Overlay.Span>
+                  <Overlay.ProductPrice>{frequency}</Overlay.ProductPrice>
+                  <Overlay.Span onClick={() => this.handleDecrease(id)}>
+                    -
+                  </Overlay.Span>
+                </Overlay.ProductWrapper>
+
+                <Overlay.ProductWrapper>
+                  <Overlay.ProductImage
                     src={`${gallery[0]}`}
                     alt={`${gallery[0]}`}
                     style={{
@@ -91,39 +114,46 @@ export class CartOverlay extends Component {
                       objectFit: "cover",
                     }}
                   />
-                </div>
-              </section>
+                </Overlay.ProductWrapper>
+              </Overlay.ProductItem>
             );
           })
         ) : (
           <>
-            <h3 className="cart--error">There are no items in your cart.</h3>
-            <div className="overlay--btn--wrapper">
-              <button className="btn--green">
+            <Overlay.ErrorMsg>
+              There are no items in your cart.
+            </Overlay.ErrorMsg>
+            <Overlay.ButtonWrapper>
+              <Overlay.Button color="green">
                 <Link to="/products">Shop</Link>
-              </button>
-            </div>
+              </Overlay.Button>
+            </Overlay.ButtonWrapper>
           </>
         )}
 
         {overlayItems.length !== 0 ? (
           <>
-            {" "}
-            <div className="overlay--total">
-              <h5>Total</h5>
-              <h5>
-                <span>{symbol}</span>100
-              </h5>
-            </div>
-            <div className="overlay--btn--wrapper">
-              <button className="btn--white">
+            <Overlay.Total>
+              <Overlay.ProductName bold="true">Total</Overlay.ProductName>
+              <Overlay.ProductName bold="true">
+                <Overlay.Span>{symbol}</Overlay.Span>
+                {totalValue.toFixed(2)}
+              </Overlay.ProductName>
+            </Overlay.Total>
+            <Overlay.ButtonWrapper>
+              <Overlay.Button>
                 <Link to="/cart"> View Bag</Link>
-              </button>
-              <button className="btn--green">Check bag</button>
-            </div>
+              </Overlay.Button>
+              <Overlay.Button color="green">
+                <Link to="/cart" color="green">
+                  {" "}
+                  Check bag
+                </Link>
+              </Overlay.Button>
+            </Overlay.ButtonWrapper>
           </>
         ) : null}
-      </section>
+      </Overlay>
     );
   }
 }

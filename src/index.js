@@ -3,7 +3,6 @@ import "../src/styles/style.css";
 import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { render } from "react-dom";
-import Products from "./container/Products";
 import CartPage from "./routes/CartPage";
 import { Provider } from "react-redux";
 import store from "../src/redux/store";
@@ -18,7 +17,7 @@ render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="products" element={<Products />}></Route>
+        <Route path="products" element={<ProductContainer />}></Route>
         <Route path="products/all" element={<ProductContainer />} />
         <Route path="products/clothes" element={<ClothesContainer />} />
         <Route path="products/tech" element={<TechContainer />} />
