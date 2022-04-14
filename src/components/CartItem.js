@@ -22,7 +22,6 @@ class CartItem extends Component {
     } = currencySymbol[0];
     const { frequency, value } = this.props.product;
     const { id, name, prices, gallery, attributes } = value;
-    console.log(this.props.product);
     return (
       <Cart key={id}>
         <Cart.SectionWrap direction="column">

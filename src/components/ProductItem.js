@@ -7,13 +7,30 @@ import Product from "./product";
 class ProductItem extends Component {
   state = {
     numero: 0,
+    toggle: true,
+  };
+
+  handleToggle = (event) => {
+    console.log(event.target.value);
+
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        toggle: !prevState.toggle,
+      };
+    });
   };
 
   handlePictureChange = (id) => {
-    this.setState({ numero: id });
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        numero: id,
+      };
+    });
   };
 
-  handleAddToCart = (productId) => {
+  handleSubmit = (productId) => {
     this.props.cartDispatch(productId);
   };
 
@@ -68,50 +85,79 @@ class ProductItem extends Component {
               </Product.HeadTitle>
             ) : null}
 
-            <Product.Size>
-              {attributes.length !== 0
-                ? attributes[0].items.map((item) => {
-                    return (
-                      <Product.Span
-                        key={item.id}
-                        style={{
-                          background:
-                            attributes[0].type === "swatch"
-                              ? `${item.value}`
-                              : null,
-                        }}
-                      >
-                        {attributes[0].type === "text" ? item.value : null}
-                      </Product.Span>
-                    );
-                  })
-                : null}
-            </Product.Size>
-
-            <Product.HeadTitle>PRICE:</Product.HeadTitle>
-
-            {prices
-              .filter((price) => price.currency.label === currency)
-              .map((price) => {
-                const {
-                  amount,
-                  currency: { label, symbol },
-                } = price;
-                return (
-                  <Product.Price key={label}>
-                    {" "}
-                    <Product.Span>{symbol}</Product.Span>
-                    {amount}
-                  </Product.Price>
-                );
-              })}
-
-            <Product.Button
-              disabled={!inStock}
-              onClick={() => this.handleAddToCart(id)}
+            {/* <Product.Span
+              key={item.id}
+              style={{
+                background:
+                  attributes[0].type === "swatch" ? `${item.value}` : null,
+              }}
             >
-              {inStock ? "add to cart" : "out of stock"}
-            </Product.Button>
+              {attributes[0].type === "text" ? item.value : null}
+            </Product.Span> */}
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                this.handleSubmit(id);
+              }}
+            >
+              <Product.Size>
+                {attributes.length !== 0
+                  ? attributes[0].items.map((item) => {
+                      return (
+                        <div key={item.id}>
+                          <input
+                            type="radio"
+                            value={item.value}
+                            className="radios"
+                            id={item.value}
+                            name={name}
+                            onChange={this.handleToggle}
+                            required
+                          />
+                          <label
+                            htmlFor={item.value}
+                            className="radio-label"
+                            style={{
+                              background:
+                                attributes[0].type === "swatch"
+                                  ? `${item.value}`
+                                  : null,
+                              color:
+                                attributes[0].type === "swatch"
+                                  ? `${item.value}`
+                                  : null,
+                            }}
+                          >
+                            {item.value}
+                          </label>
+                        </div>
+                      );
+                    })
+                  : null}
+              </Product.Size>
+
+              <Product.HeadTitle>PRICE:</Product.HeadTitle>
+
+              {prices
+                .filter((price) => price.currency.label === currency)
+                .map((price) => {
+                  const {
+                    amount,
+                    currency: { label, symbol },
+                  } = price;
+                  return (
+                    <Product.Price key={label}>
+                      {" "}
+                      <Product.Span>{symbol}</Product.Span>
+                      {amount}
+                    </Product.Price>
+                  );
+                })}
+
+              <Product.Button disabled={!inStock}>
+                {inStock ? "add to cart" : "out of stock"}
+              </Product.Button>
+            </form>
 
             <Product.Description>
               {description.replace(/<[^>]+>/g, "")}

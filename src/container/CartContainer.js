@@ -13,7 +13,7 @@ export class CartContainer extends Component {
         <Product.Container>
           {overlayItems.length !== 0 ? (
             overlayItems.map((item) => {
-              return <CartItem product={item} key={item.id} />;
+              return <CartItem product={item} key={item} />;
             })
           ) : (
             <CartError />

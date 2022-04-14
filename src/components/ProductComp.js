@@ -51,7 +51,7 @@ class ProductComp extends Component {
               );
             })}
         </Link>
-        {inStock && this.state.cartToggle ? (
+        {inStock ? (
           <Product.CartIcon onClick={() => this.handleAddToCart(id)}>
             <AiOutlineShoppingCart />
           </Product.CartIcon>

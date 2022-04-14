@@ -38,8 +38,6 @@ export class CartOverlay extends Component {
         : totalArray.reduce((acc, value) => {
             return acc + value;
           });
-    console.log(totalValue);
-    console.log(totalArray);
     return (
       <Overlay onMouseLeave={this.props.onLeave}>
         <Overlay.Info>

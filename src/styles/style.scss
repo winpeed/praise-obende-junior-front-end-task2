@@ -71,9 +71,6 @@ code {
 
   }
 
- 
-}
-
 //PRODUCT ITEM PAGE DESIGN
 
 
@@ -104,24 +101,21 @@ code {
 }
 
 
-// @media (max-width: 600px) {
-  
-// }
-  // .product--main {
-  //   flex-direction: row;
-  // }
+.radios{
+  display: none;
+}
 
-  // .product--swatch {
-  //   flex-direction: column;
-  // }
+.radio-label{
+  padding: 0.6em;
+  min-width: 20px;
+  text-align: center;
+  border: 1px solid black;
+  margin: 0.7em 0.7em 0.7em 0em;
+  cursor: pointer;
+}
 
-  // .cart--basket {
-  //   margin-left: 1em;
-  // }
-
-  // .overlay {
-  //   right: 0em;
-  // }
-
-
-
+input[type="radio"]:checked + .radio-label{
+  border: 2px solid var(--color-black);
+  background: black;
+  color: white;
+}

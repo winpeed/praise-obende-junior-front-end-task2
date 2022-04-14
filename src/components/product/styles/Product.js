@@ -157,7 +157,7 @@ export const HeadTitle = styled.h4`
   font-family: var(--font-secondary);
   padding-bottom: 0.5em;
   font-size: 0.8rem;
-  margin-top: 0.9em;
+  margin: 0.9em 0em;
 `;
 
 export const Price = styled.p`
@@ -212,6 +212,7 @@ export const OverlayButton = styled.button`
 
 export const Size = styled.div`
   display: flex;
+  margin: 1.5em 0em;
 
   span {
     padding: 0.6em;
