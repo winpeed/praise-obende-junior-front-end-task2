@@ -7,16 +7,14 @@ import Product from "./product";
 class ProductItem extends Component {
   state = {
     numero: 0,
-    toggle: true,
+    size: "",
   };
 
   handleToggle = (event) => {
-    console.log(event.target.value);
-
     this.setState((prevState) => {
       return {
         ...prevState,
-        toggle: !prevState.toggle,
+        size: event.target.value,
       };
     });
   };
@@ -30,8 +28,9 @@ class ProductItem extends Component {
     });
   };
 
-  handleSubmit = (productId) => {
-    this.props.cartDispatch(productId);
+  handleSubmit = (productId, size) => {
+    console.log(size);
+    this.props.cartDispatch(productId, size);
   };
 
   render() {
@@ -40,7 +39,7 @@ class ProductItem extends Component {
       product;
 
     const { currency } = this.props.currencyData;
-
+    console.log(this.props.cartData.size);
     return (
       <Container>
         <Product.Main>
@@ -85,19 +84,10 @@ class ProductItem extends Component {
               </Product.HeadTitle>
             ) : null}
 
-            {/* <Product.Span
-              key={item.id}
-              style={{
-                background:
-                  attributes[0].type === "swatch" ? `${item.value}` : null,
-              }}
-            >
-              {attributes[0].type === "text" ? item.value : null}
-            </Product.Span> */}
             <form
               onSubmit={(event) => {
                 event.preventDefault();
-                this.handleSubmit(id);
+                this.handleSubmit(id, this.state.size);
               }}
             >
               <Product.Size>
@@ -182,8 +172,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    cartDispatch: (cartValue) =>
-      dispatch({ type: "ADD_TO_CART", payload: cartValue }),
+    cartDispatch: (productId, size) =>
+      dispatch({ type: "ADD_TO_CART", payload: { productId, size } }),
   };
 };
 

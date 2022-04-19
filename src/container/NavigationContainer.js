@@ -134,7 +134,7 @@ class NavigationContainer extends Component {
                   pointerEvents: cartItems.length === 0 ? "none" : "auto",
                 }}
               >
-                <BsCart style={{ fontSize: "1.4rem", cursor: "pointer" }} />
+                <BsCart style={{ fontSize: "2.1rem", cursor: "pointer" }} />
               </Link>
               <Header.Span className="cart--basket--number">
                 {overlayItems.length}

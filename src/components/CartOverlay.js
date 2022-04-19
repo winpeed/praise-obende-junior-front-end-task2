@@ -22,8 +22,6 @@ export class CartOverlay extends Component {
       currency: { symbol },
     } = currencySymbol[0];
 
-    console.log(currency);
-    console.log(overlayItems);
     const totalArray = overlayItems.map((item) => {
       const priceItem = item.value.prices.filter((currValue) => {
         return currValue.currency.label === currency;
@@ -38,6 +36,7 @@ export class CartOverlay extends Component {
         : totalArray.reduce((acc, value) => {
             return acc + value;
           });
+
     return (
       <Overlay onMouseLeave={this.props.onLeave}>
         <Overlay.Info>
@@ -81,6 +80,13 @@ export class CartOverlay extends Component {
                                     ? `${item.value}`
                                     : null,
                               }}
+                              className={
+                                this.props.cartData.size.includes(
+                                  String(item.value)
+                                )
+                                  ? "checked-label"
+                                  : null
+                              }
                             >
                               {attributes[0].type === "text"
                                 ? item.value

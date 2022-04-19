@@ -97,4 +97,10 @@ input[type=radio]:checked + .radio-label {
   border: 2px solid var(--color-black);
   background: black;
   color: white;
+}
+
+.checked-label {
+  border: 2px solid var(--color-black);
+  background: black;
+  color: white;
 }/*# sourceMappingURL=style.css.map */

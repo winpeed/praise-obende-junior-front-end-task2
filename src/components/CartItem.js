@@ -56,6 +56,11 @@ class CartItem extends Component {
                             ? `${item.value}`
                             : null,
                       }}
+                      className={
+                        this.props.cartData.size.includes(String(item.value))
+                          ? "checked-label"
+                          : null
+                      }
                     >
                       {attributes[0].type === "text" ? item.value : null}
                     </Cart.Span>

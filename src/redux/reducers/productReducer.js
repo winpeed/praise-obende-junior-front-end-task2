@@ -35,6 +35,7 @@ const cartState = {
   ),
   cartItems: [],
   overlayItems: [],
+  size: [],
 };
 
 const cartReducer = (state = cartState, action) => {
@@ -43,7 +44,10 @@ const cartReducer = (state = cartState, action) => {
   );
   switch (action.type) {
     case "ADD_TO_CART":
-      const cartFirstItems = [...state.cartItems, ...newCartItems];
+      const newestCartItems = state.allItems[0].products.filter(
+        (item) => item.id === action.payload.productId
+      );
+      const cartFirstItems = [...state.cartItems, ...newestCartItems];
       const uniqueCartItems = [...new Set(cartFirstItems)];
 
       const overlayCartItems = uniqueCartItems.map((item) => {
@@ -59,6 +63,7 @@ const cartReducer = (state = cartState, action) => {
         ...state,
         cartItems: [...cartFirstItems],
         overlayItems: [...overlayCartItems],
+        size: [...state.size, action.payload.size],
       };
     case "INCREASE_FREQUENCY":
       const secondFirstItems = [...state.cartItems, ...newCartItems];

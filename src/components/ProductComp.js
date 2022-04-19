@@ -17,8 +17,8 @@ class ProductComp extends Component {
     });
   };
 
-  handleAddToCart = (productID) => {
-    this.props.cartDispatch(productID);
+  handleAddToCart = (productId) => {
+    this.props.cartDispatch(productId);
   };
 
   render() {
