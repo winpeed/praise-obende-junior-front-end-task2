@@ -8,7 +8,7 @@ This task puts you face-to-face to some common tasks in the world of React devel
 
 You are expected to fetch data from the GraphQL endpoint and to provide an interface to view and interact with this data. You can find the endpoint [here](https://github.com/scandiweb/junior-react-endpoint), along with instructions on how to launch it.
 
-![Mainteny-Uni](https://user-images.githubusercontent.com/28057919/147680932-f15a7954-4da9-45bf-a933-31edc37cec17.JPG)
+![scandiweb junior](https://user-images.githubusercontent.com/28057919/164213330-de8b0728-3f51-44e9-a159-1f48d3729e3d.JPG)
 
 [Live Project](https://scandiweb-junior-front-end-task2.vercel.app/ "Live Project")
 [Repo](https://github.com/winpeed/scandiweb-junior-front-end-task2 "Repo")
@@ -24,12 +24,12 @@ You are expected to fetch data from the GraphQL endpoint and to provide an inter
    npm install
    ```
 3. In the project directory, you can run:
-
 ```js
 "npm run start";
 ```
 
 to start the development server on http://localhost:3000.
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The page will reload if you make edits. You will also see any lint errors in the console.
 
 5. Run
@@ -46,7 +46,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser. T
 
 2. Click the 'View all Products' button to see all products.
 
-![sign-in](https://user-images.githubusercontent.com/28057919/147681043-6eeb6ccb-3af9-4a28-8b2d-872eccf49a37.JPG)
+![view-products](https://user-images.githubusercontent.com/28057919/164213430-16b53ca1-3dd5-4320-ad8e-1f2e1406dec5.JPG)
 
 ### Built with
 
