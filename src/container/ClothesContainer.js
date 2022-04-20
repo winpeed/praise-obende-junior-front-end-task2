@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Product from "../components/product/index";
 import ProductComp from "../components/ProductComp";
-import NavigationContainer from "./NavigationContainer";
 
 class ClothesContainer extends Component {
   render() {
@@ -10,7 +9,6 @@ class ClothesContainer extends Component {
     const { currency } = this.props.currencyData;
     return (
       <>
-        <NavigationContainer />
         <Product>
           <Product.PageTitle>
             {name.slice(0, 1).toUpperCase()}

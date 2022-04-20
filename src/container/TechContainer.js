@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Product from "../components/product/index";
 import ProductComp from "../components/ProductComp";
-import NavigationContainer from "./NavigationContainer";
 
 class TechContainer extends Component {
   render() {
@@ -11,7 +10,6 @@ class TechContainer extends Component {
 
     return (
       <>
-        <NavigationContainer />
         <Product>
           <Product.PageTitle>
             {name.slice(0, 1).toUpperCase()}

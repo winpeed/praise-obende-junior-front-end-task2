@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ProductItem from "../components/ProductItem";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import NavigationContainer from "./NavigationContainer";
 
 class SingleTechContainer extends Component {
   render() {
@@ -10,7 +9,6 @@ class SingleTechContainer extends Component {
 
     return (
       <>
-        <NavigationContainer />
         <ProductItem product={product} />
       </>
     );
