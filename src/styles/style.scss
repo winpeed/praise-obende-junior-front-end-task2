@@ -35,11 +35,6 @@ code {
     monospace;
 }
 
-.cart--basket {
-  position: relative;
-  margin-left: 2em;
-}
-
 .cart--basket--number {
   position: absolute;
   top: -0.5em;
@@ -56,19 +51,12 @@ code {
   height: 15px;
 }
 
-
-
-
-
-
-
 .overlay--btn--wrapper {
   display: flex;
   justify-content: center;
   text-align: center;
 
   }
-
 
 .cart--controls {
   display: flex;

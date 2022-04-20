@@ -100,7 +100,10 @@ export const UnorderedRight = styled.ul`
   }
 `;
 
-export const ListItem = styled.li``;
+export const ListItem = styled.li`
+  position: ${(props) => (props.cart === "basket" ? "relative" : "null")};
+  margin-left: ${(props) => (props.cart === "basket" ? "2em" : "null")};
+`;
 
 export const Wrapper = styled.div`
   display: flex;
@@ -129,4 +132,21 @@ export const CurrencyDropdown = styled.div`
 
 export const Span = styled.span`
   margin-right: 0.3em;
+
+  position: ${(props) => (props.cart === "basket" ? "absolute" : "null")};
+  top: ${(props) => (props.cart === "basket" ? "-0.5em" : "null")};
+  right: ${(props) => (props.cart === "basket" ? "-1em" : "null")};
+  background-color: ${(props) =>
+    props.cart === "basket" ? "var(--color-black)" : "null"};
+  color: ${(props) =>
+    props.cart === "basket" ? "var(--color-white)" : "null"};
+  border-radius: ${(props) => (props.cart === "basket" ? "50%" : "null")};
+  padding: ${(props) =>
+    props.cart === "basket" ? "0.2em 0.2em 0.4em 0.2em" : "null"};
+  display: ${(props) => (props.cart === "basket" ? "flex" : "null")};
+  justify-content: ${(props) => (props.cart === "basket" ? "center" : "null")};
+  align-items: ${(props) => (props.cart === "basket" ? "center" : "null")};
+  font-size: ${(props) => (props.cart === "basket" ? "0.8rem" : "null")};
+  width: ${(props) => (props.cart === "basket" ? "15px" : "null")};
+  height: ${(props) => (props.cart === "basket" ? "15px" : "null")};
 `;

@@ -7,7 +7,7 @@ class WelcomeContainer extends Component {
     return (
       <Product>
         <Product.Container welcome>
-          <Product.Name>
+          <Product.Name align="center">
             You are welcome to Scandiweb E-Commerce Store
           </Product.Name>
           <Link to="/products">

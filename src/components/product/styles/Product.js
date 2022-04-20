@@ -147,7 +147,7 @@ export const Name = styled.h3`
   font-size: 1rem;
   font-weight: 400;
   margin: 1em 0em 0.6em 0em;
-  text-align: left;
+  text-align: ${(props) => (props.align === "center" ? "center" : "left")};
 `;
 
 export const NameHeading = styled(Name)`
@@ -201,7 +201,8 @@ export const OverlayWrapper = styled.div`
 
 export const OverlayButton = styled.button`
   flex: 0 0 45%;
-  padding: 1em 4em;
+  padding: 1em;
+  min-width: 150px;
   font-size: 0.6rem;
   text-transform: uppercase;
   border: none;

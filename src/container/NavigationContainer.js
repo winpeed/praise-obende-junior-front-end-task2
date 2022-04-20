@@ -126,7 +126,7 @@ class NavigationContainer extends Component {
               ) : null}
             </Header.ListItem>
 
-            <Header.ListItem className="cart--basket">
+            <Header.ListItem cart="basket">
               <Link
                 to="/"
                 onClick={this.handleCartOverlayHover}
@@ -136,9 +136,7 @@ class NavigationContainer extends Component {
               >
                 <BsCart style={{ fontSize: "2.1rem", cursor: "pointer" }} />
               </Link>
-              <Header.Span className="cart--basket--number">
-                {overlayItems.length}
-              </Header.Span>
+              <Header.Span cart="basket">{overlayItems.length}</Header.Span>
               {this.state.onCartOverlayToggle ? (
                 <CartOverlay onLeave={this.handleCartOverlayLeave} />
               ) : null}
