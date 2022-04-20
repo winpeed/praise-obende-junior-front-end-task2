@@ -36,8 +36,8 @@ export class CartContainer extends Component {
         <Product.PageTitle>CART</Product.PageTitle>
         <Product.Container>
           {overlayItems.length !== 0 ? (
-            overlayItems.map((item) => {
-              return <CartItem product={item} key={item} />;
+            overlayItems.map((item, index) => {
+              return <CartItem product={item} key={index} />;
             })
           ) : (
             <CartError />

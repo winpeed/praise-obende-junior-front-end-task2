@@ -147,6 +147,7 @@ export const Name = styled.h3`
   font-size: 1rem;
   font-weight: 400;
   margin: 1em 0em 0.6em 0em;
+  text-align: left;
 `;
 
 export const NameHeading = styled(Name)`
@@ -168,6 +169,7 @@ export const HeadTitle = styled.h4`
 export const Price = styled.p`
   font-weight: 600;
   font-size: 1rem;
+  text-align: left;
 `;
 
 export const CartMain = styled.section`
@@ -183,6 +185,7 @@ export const OverlayWrapper = styled.div`
   text-align: center;
   flex-direction: column;
   margin: 0 auto;
+  align-items: center;
 
   .btn--white {
     background: var(--color-white);
@@ -198,7 +201,7 @@ export const OverlayWrapper = styled.div`
 
 export const OverlayButton = styled.button`
   flex: 0 0 45%;
-  padding: 1em;
+  padding: 1em 4em;
   font-size: 0.6rem;
   text-transform: uppercase;
   border: none;

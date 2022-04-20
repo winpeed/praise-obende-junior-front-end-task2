@@ -8,9 +8,9 @@ export class CartError extends Component {
       <>
         <Product.OverlayWrapper>
           <Product.Name>There are no items in your cart.</Product.Name>
-          <Product.OverlayButton>
-            <Link to="/products">Shop</Link>
-          </Product.OverlayButton>
+          <Link to="/products">
+            <Product.OverlayButton>Shop</Product.OverlayButton>
+          </Link>
         </Product.OverlayWrapper>
       </>
     );

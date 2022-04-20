@@ -2,7 +2,6 @@ import React from "react";
 import "../src/styles/style.css";
 import App from "./App";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { render } from "react-dom";
 import CartPage from "./routes/CartPage";
 import { Provider } from "react-redux";
 import store from "../src/redux/store";
@@ -10,11 +9,15 @@ import ClothesContainer from "./container/ClothesContainer";
 import TechContainer from "./container/TechContainer";
 import ProductContainer from "./container/ProductContainer";
 import SingleTechContainer from "./container/SingleTechContainer";
+import ReactDOM from "react-dom/client";
+import NavigationContainer from "./container/NavigationContainer";
 
-const rootElement = document.getElementById("root");
-render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+root.render(
   <Provider store={store}>
     <BrowserRouter>
+      <NavigationContainer />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="products" element={<ProductContainer />}></Route>
@@ -31,8 +34,8 @@ render(
           element={<SingleTechContainer />}
         />
         <Route path="cart" element={<CartPage />} />
+        <Route path="*" component={() => <h2>404 Not Found </h2>} />
       </Routes>
     </BrowserRouter>
-  </Provider>,
-  rootElement
+  </Provider>
 );

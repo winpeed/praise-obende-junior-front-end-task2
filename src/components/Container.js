@@ -2,11 +2,7 @@ import React, { Component } from "react";
 
 class Container extends Component {
   render() {
-    return (
-      <>
-        <main className="container">{this.props.children}</main>
-      </>
-    );
+    return <main className="container">{this.props.children}</main>;
   }
 }
 
