@@ -145,11 +145,11 @@ export class CartOverlay extends Component {
               </Overlay.ProductName>
             </Overlay.Total>
             <Overlay.ButtonWrapper>
-              <Link to="/cart">
+              <Link to="/cart" onClick={this.props.onLeave}>
                 {" "}
                 <Overlay.Button>View Bag</Overlay.Button>{" "}
               </Link>
-              <Link to="/cart" color="green">
+              <Link to="/cart" color="green" onClick={this.props.onLeave}>
                 <Overlay.Button color="green">Check bag</Overlay.Button>
               </Link>
             </Overlay.ButtonWrapper>

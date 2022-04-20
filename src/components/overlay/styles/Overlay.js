@@ -110,12 +110,6 @@ export const Button = styled.button`
     props.color === "green" ? "var(--color-green)" : "var(--color-white)"};
   color: ${(props) =>
     props.color === "green" ? "var(--color-white)" : "var(--color-green)"};
-
-  a {
-    text-decoration: none;
-    color: ${(props) =>
-      props.color === "green" ? "var(--color-white)" : "var(--color-black)"};
-  }
 `;
 
 export const Total = styled.div`

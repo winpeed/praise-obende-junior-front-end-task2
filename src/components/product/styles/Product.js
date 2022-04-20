@@ -202,7 +202,6 @@ export const OverlayWrapper = styled.div`
 export const OverlayButton = styled.button`
   flex: 0 0 45%;
   padding: 1em;
-  min-width: 150px;
   font-size: 0.6rem;
   text-transform: uppercase;
   border: none;
@@ -212,11 +211,6 @@ export const OverlayButton = styled.button`
   margin: 0em 1em;
   background: var(--color-green);
   color: var(--color-white);
-
-  a {
-    text-decoration: none;
-    color: var(--color-white);
-  }
 `;
 
 export const Size = styled.div`
