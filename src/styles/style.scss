@@ -35,8 +35,6 @@ code {
     monospace;
 }
 
-//CART OVERLAY
-
 .cart--basket {
   position: relative;
   margin-left: 2em;
@@ -71,47 +69,12 @@ code {
 
   }
 
-//PRODUCT ITEM PAGE DESIGN
 
-
-
-//CART PAGE DESIGN
 .cart--controls {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
-  
-}
-
-
-//PRODUCT PAGE DESIGN
-
-.notification--bar{
-  background: var(--color-white);
-  text-align: center;
-  position: absolute;
-  top:0em;
-  z-index: 1000;
-  left:0;
-  right: 0;
-  padding: 2em 1em;
-  display: none;
-}
-
-
-.radios{
-  display: none;
-}
-
-.radio-label{
-  padding: 0.6em;
-  min-width: 20px;
-  text-align: center;
-  border: 1px solid black;
-  margin: 0.7em 0.7em 0.7em 0em;
-  cursor: pointer;
 }
 
 input[type="radio"]:checked + .radio-label{

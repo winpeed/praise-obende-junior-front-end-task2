@@ -3,10 +3,34 @@ import { connect } from "react-redux";
 import CartItem from "../components/CartItem";
 import CartError from "../components/CartError";
 import Product from "../components/product/index";
+import Overlay from "../components/overlay";
 
 export class CartContainer extends Component {
   render() {
-    const { overlayItems } = this.props.cartData;
+    const { allItems, overlayItems } = this.props.cartData;
+    const { currency } = this.props.currencyData;
+    const currencySymbol = allItems[0].products[0].prices.filter(
+      (price) => price.currency.label === currency
+    );
+    const {
+      currency: { symbol },
+    } = currencySymbol[0];
+
+    const totalArray = overlayItems.map((item) => {
+      const priceItem = item.value.prices.filter((currValue) => {
+        return currValue.currency.label === currency;
+      });
+
+      const newItem = item.frequency * priceItem[0].amount;
+      return newItem;
+    });
+    const totalValue =
+      totalArray.length === 0
+        ? 0
+        : totalArray.reduce((acc, value) => {
+            return acc + value;
+          });
+
     return (
       <Product>
         <Product.PageTitle>CART</Product.PageTitle>
@@ -18,6 +42,17 @@ export class CartContainer extends Component {
           ) : (
             <CartError />
           )}
+          {overlayItems.length !== 0 ? (
+            <>
+              <Overlay.Total specified>
+                <Overlay.ProductName bold="true">Total</Overlay.ProductName>
+                <Overlay.ProductName bold="true">
+                  <Overlay.Span>{symbol}</Overlay.Span>
+                  {totalValue.toFixed(2)}
+                </Overlay.ProductName>
+              </Overlay.Total>
+            </>
+          ) : null}
         </Product.Container>
       </Product>
     );

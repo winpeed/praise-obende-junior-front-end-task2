@@ -56,6 +56,8 @@ export const SectionWrap = styled.section`
   display: flex;
   flex-direction: ${(props) =>
     props.direction === "column" ? "column" : "row"};
+  align-items: ${(props) =>
+    props.direction === "column" ? "flex-start" : "null"};
 `;
 
 export const Name = styled.h3`

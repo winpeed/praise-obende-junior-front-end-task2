@@ -52,9 +52,11 @@ class ProductComp extends Component {
             })}
         </Link>
         {inStock ? (
-          <Product.CartIcon onClick={() => this.handleAddToCart(id)}>
-            <AiOutlineShoppingCart />
-          </Product.CartIcon>
+          <Link to={`/products/${category}/${id}`}>
+            <Product.CartIcon>
+              <AiOutlineShoppingCart />
+            </Product.CartIcon>
+          </Link>
         ) : null}
       </Product.Item>
     );

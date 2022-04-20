@@ -21,6 +21,10 @@ import {
   Button,
   Span,
   Description,
+  Form,
+  Label,
+  Input,
+  InputWrapper,
 } from "./styles/Product";
 
 export default function Product({ children, ...restProps }) {
@@ -121,4 +125,23 @@ Product.Span = function ProductSpan({ children, ...restProps }) {
 
 Product.Description = function ProductDescription({ children, ...restProps }) {
   return <Description {...restProps}>{children}</Description>;
+};
+
+Product.Form = function ProductForm({ children, ...restProps }) {
+  return <Form {...restProps}>{children}</Form>;
+};
+
+Product.Label = function ProductLabel({ children, ...restProps }) {
+  return <Label {...restProps}>{children}</Label>;
+};
+
+Product.InputWrapper = function ProductInputWrapper({
+  children,
+  ...restProps
+}) {
+  return <InputWrapper {...restProps}>{children}</InputWrapper>;
+};
+
+Product.Input = function ProductInput({ ...restProps }) {
+  return <Input {...restProps} />;
 };

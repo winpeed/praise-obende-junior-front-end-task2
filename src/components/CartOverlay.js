@@ -128,9 +128,9 @@ export class CartOverlay extends Component {
               There are no items in your cart.
             </Overlay.ErrorMsg>
             <Overlay.ButtonWrapper>
-              <Overlay.Button color="green">
-                <Link to="/products">Shop</Link>
-              </Overlay.Button>
+              <Link to="/products">
+                <Overlay.Button color="green">Shop</Overlay.Button>
+              </Link>
             </Overlay.ButtonWrapper>
           </>
         )}
@@ -145,15 +145,13 @@ export class CartOverlay extends Component {
               </Overlay.ProductName>
             </Overlay.Total>
             <Overlay.ButtonWrapper>
-              <Overlay.Button>
-                <Link to="/cart"> View Bag</Link>
-              </Overlay.Button>
-              <Overlay.Button color="green">
-                <Link to="/cart" color="green">
-                  {" "}
-                  Check bag
-                </Link>
-              </Overlay.Button>
+              <Link to="/cart">
+                {" "}
+                <Overlay.Button>View Bag</Overlay.Button>{" "}
+              </Link>
+              <Link to="/cart" color="green">
+                <Overlay.Button color="green">Check bag</Overlay.Button>
+              </Link>
             </Overlay.ButtonWrapper>
           </>
         ) : null}

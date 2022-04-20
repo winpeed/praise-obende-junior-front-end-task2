@@ -51,10 +51,14 @@ export const PageTitle = styled.h1`
 `;
 
 export const Container = styled.section`
-  max-width: 1100px;
-  display: flex;
+  max-width: 1200px;
   flex-wrap: wrap;
   padding: 0em 1.5em;
+  text-align: center;
+  margin-top: ${(props) => (props.welcome ? "14em" : "null")};
+  display: flex;
+  flex-direction: ${(props) => (props.welcome ? "column" : "row")};
+  align-items: ${(props) => (props.welcome ? "center" : "null")};
 
   a {
     display: inline;
@@ -64,7 +68,7 @@ export const Container = styled.section`
   }
 
   @media (min-width: 500px) {
-    justify-content: cflex-start;
+    justify-content: flex-start;
   }
 `;
 
@@ -76,6 +80,7 @@ export const Item = styled.div`
   position: relative;
   background: var(--color-white);
   padding: 1.5em 1em;
+  flex: 0 0 90%;
 
   a {
     text-decoration: none;
@@ -88,8 +93,8 @@ export const Item = styled.div`
     }
   }
 
-  @media (min-width: 500px) {
-    flex: 0 0 38%;
+  @media (min-width: 600px) {
+    flex: 0 0 40%;
     margin: 3em 2em 3em 0em;
   }
 
@@ -248,3 +253,20 @@ export const Description = styled.p`
   font-weight: 500;
   font-family: var(--font-secondary);
 `;
+
+export const Form = styled.form``;
+
+export const Label = styled.label`
+  padding: 0.6em;
+  min-width: 20px;
+  text-align: center;
+  border: 1px solid black;
+  margin: 0.7em 0.7em 0.7em 0em;
+  cursor: pointer;
+`;
+
+export const Input = styled.input`
+  display: none;
+`;
+
+export const InputWrapper = styled.div``;

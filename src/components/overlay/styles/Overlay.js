@@ -97,11 +97,11 @@ export const ButtonWrapper = styled.div`
 `;
 
 export const Button = styled.button`
-  flex: 0 0 45%;
-  padding: 1em;
+  flex: 0 0 47%;
+  padding: 1em 2.6em;
   font-size: 0.6rem;
   text-transform: uppercase;
-  border: 1px solid var(--color-black);
+  border: 1px solid var(--color-green);
   font-weight: 600;
   cursor: pointer;
   letter-spacing: 0.1em;
@@ -122,4 +122,5 @@ export const Total = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 2.5em 0em 2.5em 0em;
+  width: ${(props) => (props.specified ? "1300px" : "null")};
 `;

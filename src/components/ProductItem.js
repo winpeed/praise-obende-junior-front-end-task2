@@ -29,7 +29,6 @@ class ProductItem extends Component {
   };
 
   handleSubmit = (productId, size) => {
-    console.log(size);
     this.props.cartDispatch(productId, size);
   };
 
@@ -39,7 +38,7 @@ class ProductItem extends Component {
       product;
 
     const { currency } = this.props.currencyData;
-    console.log(this.props.cartData.size);
+
     return (
       <Container>
         <Product.Main>
@@ -84,7 +83,7 @@ class ProductItem extends Component {
               </Product.HeadTitle>
             ) : null}
 
-            <form
+            <Product.Form
               onSubmit={(event) => {
                 event.preventDefault();
                 this.handleSubmit(id, this.state.size);
@@ -94,17 +93,16 @@ class ProductItem extends Component {
                 {attributes.length !== 0
                   ? attributes[0].items.map((item) => {
                       return (
-                        <div key={item.id}>
-                          <input
+                        <Product.InputWrapper key={item.id}>
+                          <Product.Input
                             type="radio"
                             value={item.value}
-                            className="radios"
                             id={item.value}
                             name={name}
                             onChange={this.handleToggle}
                             required
                           />
-                          <label
+                          <Product.Label
                             htmlFor={item.value}
                             className="radio-label"
                             style={{
@@ -119,8 +117,8 @@ class ProductItem extends Component {
                             }}
                           >
                             {item.value}
-                          </label>
-                        </div>
+                          </Product.Label>
+                        </Product.InputWrapper>
                       );
                     })
                   : null}
@@ -147,7 +145,7 @@ class ProductItem extends Component {
               <Product.Button disabled={!inStock}>
                 {inStock ? "add to cart" : "out of stock"}
               </Product.Button>
-            </form>
+            </Product.Form>
 
             <Product.Description>
               {description.replace(/<[^>]+>/g, "")}
