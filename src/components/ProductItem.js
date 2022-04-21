@@ -8,6 +8,7 @@ class ProductItem extends Component {
   state = {
     numero: 0,
     size: "",
+    isAdded: false,
   };
 
   handleToggle = (event) => {
@@ -30,6 +31,12 @@ class ProductItem extends Component {
 
   handleSubmit = (productId, size) => {
     this.props.cartDispatch(productId, size);
+    this.setState((prevState) => {
+      return {
+        ...prevState,
+        isAdded: !prevState.isAdded,
+      };
+    });
   };
 
   render() {
@@ -142,9 +149,18 @@ class ProductItem extends Component {
                   );
                 })}
 
-              <Product.Button disabled={!inStock}>
-                {inStock ? "add to cart" : "out of stock"}
-              </Product.Button>
+              {inStock && this.state.isAdded ? (
+                <Product.Button
+                  isAdded={inStock && this.state.isAdded}
+                  disabled
+                >
+                  added to cart
+                </Product.Button>
+              ) : (
+                <Product.Button disabled={!inStock}>
+                  {inStock ? "add to cart" : "out of stock"}
+                </Product.Button>
+              )}
             </Product.Form>
 
             <Product.Description>

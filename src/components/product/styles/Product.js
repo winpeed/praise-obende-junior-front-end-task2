@@ -239,7 +239,11 @@ export const Button = styled.button`
   cursor: ${(props) => (props.disabled ? "not-allowed" : "pointer")};
   pointer-events: ${(props) => (props.disabled ? "none" : null)};
   background-color: ${(props) =>
-    props.disabled ? "var(--color-disabled)" : "var(--color-green)"};
+    props.isAdded && props.disabled
+      ? "var(--color-orange)"
+      : props.disabled
+      ? "var(--color-disabled)"
+      : "var(--color-green)"};
   color: var(--color-white);
 `;
 
